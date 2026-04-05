@@ -1,0 +1,84 @@
+# vsim -coverage -l resv_reg.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit resv_reg.ucdb; log -r /*;run -all" 
+# Start time: 23:59:44 on Dec 13,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit resv_reg.ucdb
+#  log -r /*
+# run -all
+# =================================================
+# TESTCASE: CHECK RESERVED REGISTER
+# =================================================
+# ----------------------------------------------------------
+# TIME: 160, [INFO] Write data at addr: 12'h005, data: 32'hffffffff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 526, [INFO] Read data at addr: 12'h005, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 526, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 526, [INFO] Write data at addr: 12'h00d, data: 32'hffffffff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 926, [INFO] Read data at addr: 12'h00d, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 926, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 926, [INFO] Write data at addr: 12'h006, data: 32'hffffffff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1326, [INFO] Read data at addr: 12'h006, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1326, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1326, [INFO] Write data at addr: 12'h00e, data: 32'hffffffff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1726, [INFO] Read data at addr: 12'h00e, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1726, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1726, [INFO] Write data at addr: 12'h007, data: 32'hffffffff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 2126, [INFO] Read data at addr: 12'h005, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 2126, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 2126, [INFO] Write data at addr: 12'h00f, data: 32'hffffffff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 2526, [INFO] Read data at addr: 12'h00d, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 2526, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# PASS TESTCASE
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 2626 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 23:59:45 on Dec 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

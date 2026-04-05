@@ -1,0 +1,2 @@
+var g_data = {"0":"apb_multi_data","1":"apb_pready","2":"apb_pslverr","3":"apb_pstrb","4":"apb_rw","5":"check_interrupt","6":"clear_counter","7":"counting_control_mode_0","8":"counting_control_mode_diff","9":"counting_default_mode","10":"halt_mode","11":"reg_default_val","12":"resv_reg","13":"rw1c","14":"rw_check","15":"sanity_test"};
+processTestsData(g_data);

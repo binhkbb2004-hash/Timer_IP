@@ -1,0 +1,341 @@
+module test_bench;
+
+	reg  sys_clk;         	
+	reg  sys_rst_n;
+	reg  tim_psel;
+	reg  tim_pwrite;
+	reg  tim_penable;
+	reg  dbg_mode;
+	reg  [31:0]tim_pwdata;
+	reg  [3:0] tim_pstrb;
+	reg  [11:0]tim_paddr;
+	wire tim_int;
+	wire tim_pready;
+	wire tim_pslverr;
+	wire [31:0]tim_prdata;
+	wire [63:0]golden_cnt; //golden cnt
+
+	reg [31:0]data;
+	reg [31:0]data2;
+	integer error;
+	reg tim_psel_err;
+	reg tim_penable_err;
+
+	parameter TCR   = 12'h00;
+	parameter TDR0	= 12'h04;
+       	parameter TDR1	= 12'h08;
+	parameter TCMP0	= 12'h0C;
+	parameter TCMP1	= 12'h10;
+	parameter TIER  = 12'h14;
+	parameter TISR	= 12'h18;
+	parameter THCSR	= 12'h1C;
+
+	parameter BYTE0 = 4'b0001;
+	parameter BYTE1 = 4'b0010;
+	parameter BYTE2 = 4'b0100;
+	parameter BYTE3 = 4'b1000;	
+	
+	parameter HALF_WORD0 = 4'b0011;
+	parameter HALF_WORD1 = 4'b1100;
+	parameter FULL_WORD  = 4'b1111;
+
+	parameter RED 	 = "\033[31m";
+	parameter GREEN	 = "\033[32m";
+	parameter YELLOW =	"\033[33m";
+	parameter BLUE 	 = "\033[34m";
+	parameter RESET	 = "\033[0m";
+
+	top dut(
+		.sys_clk	(sys_clk),          
+		.sys_rst_n	(sys_rst_n),        	
+		.tim_psel	(tim_psel),         	
+		.tim_pwrite	(tim_pwrite),
+		.tim_penable	(tim_penable),
+		.dbg_mode	(dbg_mode),
+		.tim_pwdata	(tim_pwdata),
+		.tim_pstrb	(tim_pstrb),
+		.tim_paddr	(tim_paddr),
+		.tim_int	(tim_int),	
+		.tim_pready	(tim_pready),       	
+		.tim_pslverr	(tim_pslverr),      	
+		.tim_prdata	(tim_prdata)	
+	);
+
+	golden_counter gol_cnt(
+		.sys_clk(sys_clk)   		,
+    		.sys_rst_n (sys_rst_n)		,
+    		.tim_psel (tim_psel) 		,
+    		.tim_penable(tim_penable)		,
+    		.tim_pwrite(tim_pwrite)		,
+    		.tim_paddr(tim_paddr)		,
+    		.tim_pwdata(tim_pwdata)		,
+    		.dbg_mode(dbg_mode)		,
+		.tim_pstrb(tim_pstrb)		,
+    		.cnt(golden_cnt)		
+	
+	);
+
+	`include "run_test.v"
+
+	initial begin
+		sys_clk = 0;
+		forever #25 sys_clk = ~sys_clk;	
+	end
+
+	initial begin
+		sys_rst_n = 0;
+		#50 sys_rst_n = 1;
+	end
+
+	initial begin
+		#160;
+		run_test();	
+		#100;
+		$finish;
+	end
+
+	initial begin
+		tim_pstrb = 0;
+		tim_pwrite = 0;
+		tim_penable = 0;
+		tim_psel = 0;
+		tim_pwdata = 0;
+		tim_paddr = 0;
+		dbg_mode = 0;
+		error = 0;
+		data = 0;
+		data2 = 0;
+		tim_psel = 0;
+		tim_penable = 0;
+		tim_psel_err = 0;
+		tim_penable_err = 0;
+	end
+
+	task master_write;
+		input [11:0]	address;
+		input [31:0]	write_data;
+		input [3:0]  	pstrobe;
+
+		begin
+			$display("----------------------------------------------------------");	
+			$display("TIME: %0t, [INFO] Write data at addr: 12'h%x, data: 32'h%x, pstrb: 4'b%4b", $time, address, write_data, pstrobe);
+			$display("----------------------------------------------------------");
+			@(posedge sys_clk);
+			#1;
+			tim_psel = 1;
+			tim_pwrite = 1;
+			tim_paddr = address;
+			tim_pstrb = pstrobe;
+			tim_pwdata = write_data;
+
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 1;
+
+			wait(tim_pready);
+			@(posedge sys_clk);
+			#1;
+			tim_pstrb = 0;
+			tim_psel = 0;
+			tim_pwrite = 0;
+			tim_penable = 0;
+			tim_paddr = 0;
+			tim_pwdata = 0;
+		end
+	endtask
+
+	task master_read;
+		input  [11:0]	address;
+		output [31:0]	data_read;
+		
+		begin
+			@(posedge sys_clk);
+			#1;
+			tim_psel = 1;
+			tim_pwrite = 0;
+			tim_paddr = address;
+
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 1;
+
+			wait(tim_pready);
+			@(posedge sys_clk);
+			data_read = tim_prdata;
+			#1;
+			tim_psel = 0;
+			tim_penable = 0;
+			tim_paddr = 0;
+			$display("----------------------------------------------------------");
+			$display("TIME: %0t, [INFO] Read data at addr: 12'h%x, data: 32'h%x", $time, address, data_read);
+			$display("----------------------------------------------------------");
+		end
+	endtask
+
+	task cmp_data;
+		input [31:0]actual_data;
+		input [31:0]expect_data;
+
+		begin
+			if(actual_data !== expect_data)begin
+				$display("----------------------------------------------------------");
+				$display("%sTime: %0t, FAIL data incorect | Exp: %x, Act: %x%s", RED, $time, expect_data, actual_data, RESET);
+				$display("----------------------------------------------------------");
+				error = error + 1;
+			end else begin
+				$display("----------------------------------------------------------");
+				$display("%sTime: %0t, PASS data correct | Exp: %x, Act: %x%s", GREEN, $time, expect_data, actual_data, RESET);
+				$display("----------------------------------------------------------");
+			end
+		end
+	endtask
+	
+	task master_write_multi_data(input [11:0]addr1, input [31:0]pwdata1, input [3:0]pstrb1, input [11:0]addr2, input [31:0]pwdata2, input [3:0]pstrb2);
+		begin	
+			$display("----------------------------------------------------------");	
+			$display("TIME: %0t, [INFO] Write data at addr: 12'h%x, data: 32'h%x, pstrb: 4'b%4b", $time, addr1, pwdata1, pstrb1);
+			$display("----------------------------------------------------------");
+			@(posedge sys_clk);
+			#1;
+			tim_psel = 1;
+			tim_paddr = addr1;
+			tim_pwdata = pwdata1;
+			tim_pwrite = 1;
+			tim_pstrb = pstrb1;
+
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 1;
+
+			wait(tim_pready);
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 0;
+			tim_paddr = addr2;
+			tim_pwdata = pwdata2;
+			tim_pstrb = pstrb2;
+			$display("----------------------------------------------------------");	
+			$display("TIME: %0t, [INFO] Write data at addr: 12'h%x, data: 32'h%x, pstrb: 4'b%4b", $time, addr2, pwdata2, pstrb2);
+			$display("----------------------------------------------------------");
+
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 1;
+			
+			wait(tim_pready);
+			@(posedge sys_clk);
+			#1;
+			tim_psel = 0;
+			tim_penable = 0;
+			tim_pwrite = 0;
+			tim_pwdata = 0;
+			tim_paddr = 0;
+			tim_pstrb = 0;
+		end
+	endtask
+
+	task master_read_multi_data(input [11:0]addr1, output [31:0]data1, input [11:0]addr2, output [31:0]data2);
+		begin
+			@(posedge sys_clk);
+			#1;
+			tim_psel = 1;
+			tim_paddr = addr1;
+			tim_pwrite = 0;
+			
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 1;
+
+			wait(tim_pready);
+			@(posedge sys_clk);
+			data1 = tim_prdata;
+			$display("----------------------------------------------------------");
+			$display("TIME: %0t, [INFO] Read data at addr: 12'h%x, data: 32'h%x", $time, addr1, data1);
+			$display("----------------------------------------------------------");
+			#1;
+			tim_penable = 0;
+			tim_paddr = addr2;
+
+			@(posedge sys_clk);
+			#1;
+			tim_penable = 1;
+			
+			wait(tim_pready);
+			@(posedge sys_clk);
+			data2 = tim_prdata;
+			$display("----------------------------------------------------------");
+			$display("TIME: %0t, [INFO] Read data at addr: 12'h%x, data: 32'h%x", $time, addr2, data2);
+			$display("----------------------------------------------------------");
+			#1;
+			tim_paddr = 0;
+			tim_psel = 0;
+			tim_penable = 0;
+		end
+	endtask
+endmodule
+
+module golden_counter (
+    input wire sys_clk   ,
+    input wire sys_rst_n ,
+    input wire tim_psel  ,
+    input wire tim_penable,
+    input wire tim_pwrite,
+    input wire [11:0] tim_paddr,
+    input wire [31:0] tim_pwdata,
+    input wire dbg_mode,
+    input wire [3:0] tim_pstrb,
+    output reg [63:0] cnt
+);
+    parameter   ADDR_TCR    =   12'h0;
+    parameter   ADDR_THCSR  =   12'h1C;
+    wire [63:0] cnt_next;
+
+    wire tim_en_wr_set;
+    wire tim_en_wr_clr;
+    wire halt_wr_set;
+    wire halt_wr_clr;
+    reg  tim_en_pre;
+    reg  halt_pre;
+    reg  tim_en;
+    reg  halt;
+   
+    assign tim_en_wr_set = tim_psel & tim_penable & tim_pwrite & (tim_paddr == ADDR_TCR ) & tim_pwdata[0] & tim_pstrb[0];
+    assign tim_en_wr_clr = tim_psel & tim_penable & tim_pwrite & (tim_paddr == ADDR_TCR ) & ~tim_pwdata[0] & tim_pstrb[0];
+    assign halt_wr_set   = tim_psel & tim_penable & tim_pwrite & (tim_paddr == ADDR_THCSR ) & tim_pwdata[0] & dbg_mode & tim_pstrb[0];
+    assign halt_wr_clr   = tim_psel & tim_penable & tim_pwrite & (tim_paddr == ADDR_THCSR ) & ~tim_pwdata[0] & tim_pstrb[0];
+
+    assign cnt_next = ~tim_en ? 64'h0 : (tim_en & !halt) ? cnt + 1 : cnt;
+    
+    always @(posedge sys_clk or negedge sys_rst_n) begin
+        if(!sys_rst_n) 
+            tim_en_pre <= 1'b0;
+        else if( tim_en_wr_clr )
+            tim_en_pre <= 1'b0;
+        else if( tim_en_wr_set )
+            tim_en_pre <= 1'b1;
+    end
+    
+    always @(posedge sys_clk or negedge sys_rst_n) begin
+        if(!sys_rst_n) 
+            halt_pre <= 1'b0;
+        else if( halt_wr_clr )
+            halt_pre <= 1'b0;
+        else if( halt_wr_set )
+            halt_pre <= 1'b1;
+    end
+
+    always @(posedge sys_clk or negedge sys_rst_n) begin
+        if( !sys_rst_n ) begin 
+            cnt    <=  64'h0       ;
+            tim_en   <= 0      ;
+            halt     <= 0      ;    
+        end else begin
+            cnt    <=  cnt_next; 
+            tim_en   <= tim_en_pre      ;
+            halt     <= halt_pre         ;    
+        end
+    end
+
+endmodule
+
+

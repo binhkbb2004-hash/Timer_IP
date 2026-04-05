@@ -1,0 +1,90 @@
+# vsim -coverage -l apb_pready.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit apb_pready.ucdb; log -r /*;run -all" 
+# Start time: 23:59:40 on Dec 13,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit apb_pready.ucdb
+#  log -r /*
+# run -all
+# =========================================================
+# TESTCASE: CHECK PREADY
+# =========================================================
+# ----------------------------------------------------------
+# TIME: 160, [INFO] Write data at addr: 12'h004, data: 32'h000000ff, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 325, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 525, [INFO] Read data at addr: 12'h004, data: 32'h000000ff
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 525, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 526, PASS data correct | Exp: 000000ff, Act: 000000ff[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 526, [INFO] Write data at addr: 12'h014, data: 32'h00000001, pstrb: 4'b0010
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 725, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 925, [INFO] Read data at addr: 12'h014, data: 32'h00000000
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 925, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 926, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 926, [INFO] Write data at addr: 12'h018, data: 32'h00000001, pstrb: 4'b0010
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 1125, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1325, [INFO] Read data at addr: 12'h018, data: 32'h00000000
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 1325, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1326, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1326, [INFO] Write data at addr: 12'h01c, data: 32'h00000001, pstrb: 4'b0010
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 1525, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1725, [INFO] Read data at addr: 12'h01c, data: 32'h00000000
+# ----------------------------------------------------------
+# ------------------------------------------------------------
+# [32mTIME: 1725, PASS | Pready is asserted properly[0m
+# ------------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1726, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# PASS TESTCASE
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 1826 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 23:59:41 on Dec 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

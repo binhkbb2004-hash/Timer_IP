@@ -1,0 +1,72 @@
+# vsim -coverage -l apb_multi_data.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit apb_multi_data.ucdb; log -r /*;run -all" 
+# Start time: 23:59:36 on Dec 13,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit apb_multi_data.ucdb
+#  log -r /*
+# run -all
+# =========================================================
+# TESTCASE: APB WRITE MULTI-ACCESS
+# =========================================================
+# ----------------------------------------------------------
+# TIME: 160, [INFO] Write data at addr: 12'h00c, data: 32'h00000000, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 326, [INFO] Write data at addr: 12'h010, data: 32'h00000000, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 676, [INFO] Read data at addr: 12'h00c, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 676, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 876, [INFO] Read data at addr: 12'h010, data: 32'h00000000
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 876, PASS data correct | Exp: 00000000, Act: 00000000[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 876, [INFO] Write data at addr: 12'h004, data: 32'h000000ff, pstrb: 4'b0001
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1076, [INFO] Write data at addr: 12'h008, data: 32'h0000ff00, pstrb: 4'b0010
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1475, [INFO] Read data at addr: 12'h004, data: 32'h000000ff
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1625, [INFO] Read data at addr: 12'h008, data: 32'h0000ff00
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1626, PASS data correct | Exp: 000000ff, Act: 000000ff[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1626, PASS data correct | Exp: 0000ff00, Act: 0000ff00[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 1975, PASS data correct | Exp: 55555555, Act: 55555555[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 2275, PASS data correct | Exp: 66666666, Act: 66666666[0m
+# ----------------------------------------------------------
+# PASS TESTCASE
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 2376 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 23:59:37 on Dec 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

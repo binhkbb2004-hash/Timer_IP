@@ -1,0 +1,1090 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /test_bench/dut/module3
+=== Design Unit: work.Counter_control
+=================================================================================
+Expression Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                     23        22         1    95.65%
+
+================================Expression Details================================
+
+Expression Coverage for instance /test_bench/dut/module3 --
+
+  File ../rtl/Counter_control.v
+
+
+
+
+----------------Focused Expression View-----------------
+Line       52 Item    1  (((timer_en & div_en) & (div_val != 0)) & (counter_internal == limit))
+Expression totals: 4 of 5 input terms covered = 80.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+               (div_val != 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          2  timer_en_0                     ((counter_internal == limit) && (div_val != 0) && div_en)
+  Row   2:          2  timer_en_1                     ((counter_internal == limit) && (div_val != 0) && div_en)
+  Row   3:          1  div_en_0                       ((counter_internal == limit) && (div_val != 0) && timer_en)
+  Row   4:          3  div_en_1                       ((counter_internal == limit) && (div_val != 0) && timer_en)
+  Row   5:    ***0***  (div_val != 0)_0               ((counter_internal == limit) && (timer_en & div_en))
+  Row   6:          3  (div_val != 0)_1               ((counter_internal == limit) && (timer_en & div_en))
+  Row   7:          3  (counter_internal == limit)_0  ((timer_en & div_en) & (div_val != 0))
+  Row   8:          3  (counter_internal == limit)_1  ((timer_en & div_en) & (div_val != 0))
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   9:          2  (counter_internal == limit)_0  (((~halt_req & timer_en) & div_en) & (div_val != 0))
+ Row   10:          2  (counter_internal == limit)_1  (((~halt_req & timer_en) & div_en) & (div_val != 0))
+
+
+
+
+=================================================================================
+=== Instance: /test_bench/gol_cnt
+=== Design Unit: work.golden_counter
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         1         1    50.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_bench/gol_cnt --
+
+  File ../tb/test_bench.v
+----------------Focused Condition View-------------------
+Line       307 Item    1  (tim_en & ~halt)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+      tim_en         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  tim_en_0              ~halt                         
+  Row   2:         10  tim_en_1              ~halt                         
+  Row   3:         10  halt_0                tim_en                        
+  Row   4:          4  halt_1                tim_en                        
+
+
+Expression Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                     25        16         9    64.00%
+
+================================Expression Details================================
+
+Expression Coverage for instance /test_bench/gol_cnt --
+
+  File ../tb/test_bench.v
+----------------Focused Expression View-----------------
+Line       302 Item    1  (((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 0)) & tim_pwdata[0]) & tim_pstrb[0])
+Expression totals: 4 of 6 input terms covered = 66.66%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+          tim_psel         N  '_0' not hit             Hit '_0'
+        tim_pwrite         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  tim_psel_0            (tim_pstrb[0] && tim_pwdata[0] && (tim_paddr == 0) && tim_pwrite && tim_penable)
+  Row   2:         10  tim_psel_1            (tim_pstrb[0] && tim_pwdata[0] && (tim_paddr == 0) && tim_pwrite && tim_penable)
+  Row   3:         10  tim_penable_0         (tim_pstrb[0] && tim_pwdata[0] && (tim_paddr == 0) && tim_pwrite && tim_psel)
+  Row   4:         10  tim_penable_1         (tim_pstrb[0] && tim_pwdata[0] && (tim_paddr == 0) && tim_pwrite && tim_psel)
+  Row   5:    ***0***  tim_pwrite_0          (tim_pstrb[0] && tim_pwdata[0] && (tim_paddr == 0) && (tim_psel & tim_penable))
+  Row   6:         10  tim_pwrite_1          (tim_pstrb[0] && tim_pwdata[0] && (tim_paddr == 0) && (tim_psel & tim_penable))
+  Row   7:         13  (tim_paddr == 0)_0    (tim_pstrb[0] && tim_pwdata[0] && ((tim_psel & tim_penable) & tim_pwrite))
+  Row   8:         10  (tim_paddr == 0)_1    (tim_pstrb[0] && tim_pwdata[0] && ((tim_psel & tim_penable) & tim_pwrite))
+  Row   9:          7  tim_pwdata[0]_0       (tim_pstrb[0] && (((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 0)))
+ Row   10:         10  tim_pwdata[0]_1       (tim_pstrb[0] && (((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 0)))
+ Row   11:          1  tim_pstrb[0]_0        ((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 0)) & tim_pwdata[0])
+ Row   12:         10  tim_pstrb[0]_1        ((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 0)) & tim_pwdata[0])
+
+----------------Focused Expression View-----------------
+Line       303 Item    1  (((((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite) & (tim_paddr == 0)) & tim_pstrb[0])
+Expression totals: 5 of 6 input terms covered = 83.33%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+        tim_pwrite         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          7  tim_pwdata[0]_0       (tim_pstrb[0] && (tim_paddr == 0) && tim_pwrite && tim_penable && tim_psel)
+  Row   2:         10  tim_pwdata[0]_1       (tim_pstrb[0] && (tim_paddr == 0) && tim_pwrite && tim_penable && tim_psel)
+  Row   3:          1  tim_psel_0            (tim_pstrb[0] && (tim_paddr == 0) && tim_pwrite && tim_penable && ~tim_pwdata[0])
+  Row   4:          7  tim_psel_1            (tim_pstrb[0] && (tim_paddr == 0) && tim_pwrite && tim_penable && ~tim_pwdata[0])
+  Row   5:          7  tim_penable_0         (tim_pstrb[0] && (tim_paddr == 0) && tim_pwrite && (~tim_pwdata[0] & tim_psel))
+  Row   6:          7  tim_penable_1         (tim_pstrb[0] && (tim_paddr == 0) && tim_pwrite && (~tim_pwdata[0] & tim_psel))
+  Row   7:    ***0***  tim_pwrite_0          (tim_pstrb[0] && (tim_paddr == 0) && ((~tim_pwdata[0] & tim_psel) & tim_penable))
+  Row   8:          7  tim_pwrite_1          (tim_pstrb[0] && (tim_paddr == 0) && ((~tim_pwdata[0] & tim_psel) & tim_penable))
+  Row   9:         10  (tim_paddr == 0)_0    (tim_pstrb[0] && (((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite))
+ Row   10:          7  (tim_paddr == 0)_1    (tim_pstrb[0] && (((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite))
+ Row   11:          1  tim_pstrb[0]_0        ((((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite) & (tim_paddr == 0))
+ Row   12:          7  tim_pstrb[0]_1        ((((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite) & (tim_paddr == 0))
+
+----------------Focused Expression View-----------------
+Line       305 Item    1  (((((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite) & (tim_paddr == 28)) & tim_pstrb[0])
+Expression totals: 3 of 6 input terms covered = 50.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+           tim_psel         N  '_0' not hit             Hit '_0'
+         tim_pwrite         N  '_0' not hit             Hit '_0'
+       tim_pstrb[0]         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          4  tim_pwdata[0]_0       (tim_pstrb[0] && (tim_paddr == 28) && tim_pwrite && tim_penable && tim_psel)
+  Row   2:          5  tim_pwdata[0]_1       (tim_pstrb[0] && (tim_paddr == 28) && tim_pwrite && tim_penable && tim_psel)
+  Row   3:    ***0***  tim_psel_0            (tim_pstrb[0] && (tim_paddr == 28) && tim_pwrite && tim_penable && ~tim_pwdata[0])
+  Row   4:          4  tim_psel_1            (tim_pstrb[0] && (tim_paddr == 28) && tim_pwrite && tim_penable && ~tim_pwdata[0])
+  Row   5:          4  tim_penable_0         (tim_pstrb[0] && (tim_paddr == 28) && tim_pwrite && (~tim_pwdata[0] & tim_psel))
+  Row   6:          4  tim_penable_1         (tim_pstrb[0] && (tim_paddr == 28) && tim_pwrite && (~tim_pwdata[0] & tim_psel))
+  Row   7:    ***0***  tim_pwrite_0          (tim_pstrb[0] && (tim_paddr == 28) && ((~tim_pwdata[0] & tim_psel) & tim_penable))
+  Row   8:          4  tim_pwrite_1          (tim_pstrb[0] && (tim_paddr == 28) && ((~tim_pwdata[0] & tim_psel) & tim_penable))
+  Row   9:         12  (tim_paddr == 28)_0   (tim_pstrb[0] && (((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite))
+ Row   10:          4  (tim_paddr == 28)_1   (tim_pstrb[0] && (((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite))
+ Row   11:    ***0***  tim_pstrb[0]_0        ((((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite) & (tim_paddr == 28))
+ Row   12:          4  tim_pstrb[0]_1        ((((~tim_pwdata[0] & tim_psel) & tim_penable) & tim_pwrite) & (tim_paddr == 28))
+
+----------------Focused Expression View-----------------
+Line       304 Item    1  ((((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)) & tim_pwdata[0]) & dbg_mode) & tim_pstrb[0])
+Expression totals: 4 of 7 input terms covered = 57.14%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+           tim_psel         N  '_0' not hit             Hit '_0'
+         tim_pwrite         N  '_0' not hit             Hit '_0'
+       tim_pstrb[0]         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  tim_psel_0            (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && (tim_paddr == 28) && tim_pwrite && tim_penable)
+  Row   2:          4  tim_psel_1            (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && (tim_paddr == 28) && tim_pwrite && tim_penable)
+  Row   3:          4  tim_penable_0         (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && (tim_paddr == 28) && tim_pwrite && tim_psel)
+  Row   4:          4  tim_penable_1         (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && (tim_paddr == 28) && tim_pwrite && tim_psel)
+  Row   5:    ***0***  tim_pwrite_0          (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && (tim_paddr == 28) && (tim_psel & tim_penable))
+  Row   6:          4  tim_pwrite_1          (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && (tim_paddr == 28) && (tim_psel & tim_penable))
+  Row   7:          4  (tim_paddr == 28)_0   (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && ((tim_psel & tim_penable) & tim_pwrite))
+  Row   8:          4  (tim_paddr == 28)_1   (tim_pstrb[0] && dbg_mode && tim_pwdata[0] && ((tim_psel & tim_penable) & tim_pwrite))
+  Row   9:          4  tim_pwdata[0]_0       (tim_pstrb[0] && dbg_mode && (((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)))
+ Row   10:          4  tim_pwdata[0]_1       (tim_pstrb[0] && dbg_mode && (((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)))
+ Row   11:          1  dbg_mode_0            (tim_pstrb[0] && ((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)) & tim_pwdata[0]))
+ Row   12:          4  dbg_mode_1            (tim_pstrb[0] && ((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)) & tim_pwdata[0]))
+ Row   13:    ***0***  tim_pstrb[0]_0        (((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)) & tim_pwdata[0]) & dbg_mode)
+ Row   14:          4  tim_pstrb[0]_1        (((((tim_psel & tim_penable) & tim_pwrite) & (tim_paddr == 28)) & tim_pwdata[0]) & dbg_mode)
+
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        272        82       190    30.14%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /test_bench/gol_cnt --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                          cnt[0-3]          10          10      100.00 
+                                          cnt[4-5]           9           9      100.00 
+                                            cnt[6]           8           8      100.00 
+                                            cnt[7]           7           7      100.00 
+                                            cnt[8]           6           7      100.00 
+                                            cnt[9]           3           5      100.00 
+                                           cnt[10]           3           3      100.00 
+                                        cnt[11-15]           2           2      100.00 
+                                           cnt[16]           0           2       50.00 
+                                        cnt[17-63]           0           0        0.00 
+                                     cnt_next[0-3]          10          10      100.00 
+                                     cnt_next[4-5]           9           9      100.00 
+                                       cnt_next[6]           8           8      100.00 
+                                       cnt_next[7]           7           7      100.00 
+                                       cnt_next[8]           6           7      100.00 
+                                       cnt_next[9]           3           5      100.00 
+                                      cnt_next[10]           3           3      100.00 
+                                   cnt_next[11-15]           2           2      100.00 
+                                      cnt_next[16]           0           2       50.00 
+                                   cnt_next[17-63]           0           0        0.00 
+                                              halt           4           4      100.00 
+                                          halt_pre           4           4      100.00 
+                                       halt_wr_clr           4           4      100.00 
+                                       halt_wr_set           4           4      100.00 
+                                            tim_en           6          10      100.00 
+                                        tim_en_pre           6          10      100.00 
+                                     tim_en_wr_clr           7           7      100.00 
+                                     tim_en_wr_set          10          10      100.00 
+
+Total Node Count     =        136 
+Toggled Node Count   =         40 
+Untoggled Node Count =         96 
+
+Toggle Coverage      =      30.14% (82 of 272 bins)
+
+=================================================================================
+=== Instance: /test_bench
+=== Design Unit: work.test_bench
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                       100        64        36    64.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /test_bench
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File run_test.v
+------------------------------------IF Branch------------------------------------
+    14                                         1     Count coming in to IF
+    14              1                          1     		cmp_data(data, 32'h0);
+    18              1                    ***0***     		master_read(TDR0+2, data);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    18                                         1     Count coming in to IF
+    18              1                          1     		master_read(TDR0+2, data);
+    20              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    22                                         1     Count coming in to IF
+    22              1                    ***0***     		master_read(TCMP0+2, data);
+    27              1                          1     		master_read(TDR0+1, data);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    26                                         1     Count coming in to IF
+    26              1                          1     		master_write(TDR0+3, 32'hFFFF_FFFF, FULL_WORD);
+    30              1                    ***0***     		master_write(TCMP0+3, 32'hFFFF_FFFF, FULL_WORD);
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    27                                         1     Count coming in to IF
+    27              1                          1     		master_read(TDR0+1, data);
+    29              1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    29                                         1     Count coming in to IF
+    29              1                          1     
+    33              1                    ***0***     		
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    31                                         1     Count coming in to IF
+    31              1                    ***0***     		master_read(TCMP0+1, data);
+    36              1                          1     		end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    32                                         1     Count coming in to IF
+    32              1                          1     		cmp_data(data, 32'h0);
+    34              1                    ***0***     		if(error === 0)begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    34                                         1     Count coming in to IF
+    34              1                          1     		if(error === 0)begin
+    36              1                    ***0***     		end else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    35                                         1     Count coming in to IF
+    35              1                          1     			$display("PASS TESTCASE");
+    39              1                    ***0***     	end
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    39                                         1     Count coming in to IF
+    39              1                          1     	end
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    40                                         1     Count coming in to IF
+    40              1                          1     endtask
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    44                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    45                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    46                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    49                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    51                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    52                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    54                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    54                                         4     Count coming in to IF
+                                               4     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    55                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    60                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    62                                         9     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    63                                         4     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    67                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    70                                         2     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    71                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    76                                         3     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    80                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    81                                         2     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    85                                         9     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    87                                         1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    92                                         2     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    96                                         4     Count coming in to IF
+                                               4     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    105                                        1     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    110                                        4     Count coming in to IF
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      44         8        36    18.18%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_bench --
+
+  File ../tb/test_bench.v
+
+
+----------------Focused Condition View-------------------
+Line       14 Item    1  (data !== 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (data !== 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (data !== 0)_0        -                             
+  Row   2:          1  (data !== 0)_1        -                             
+
+----------------Focused Condition View-------------------
+Line       18 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       22 Item    1  (data === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (data === 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (data === 0)_0        -                             
+  Row   2:    ***0***  (data === 0)_1        -                             
+
+----------------Focused Condition View-------------------
+Line       26 Item    1  (data === golden_cnt)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (data === golden_cnt)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:    ***0***  (data === golden_cnt)_0  -                             
+  Row   2:          1  (data === golden_cnt)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       27 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       29 Item    1  (data === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (data === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (data === 0)_0        -                             
+  Row   2:          1  (data === 0)_1        -                             
+
+----------------Focused Condition View-------------------
+Line       31 Item    1  (data[0] === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+          Input Term   Covered  Reason for no coverage   Hint
+         -----------  --------  -----------------------  --------------
+  (data[0] === 1'b1)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (data[0] === 1'b1)_0  -                             
+  Row   2:    ***0***  (data[0] === 1'b1)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       32 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       34 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       39 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       40 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       44 Item    1  (cnt1 >= (cnt + 256))
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (cnt1 >= (cnt + 256))         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:    ***0***  (cnt1 >= (cnt + 256))_0  -                             
+  Row   2:          1  (cnt1 >= (cnt + 256))_1  -                             
+
+----------------Focused Condition View-------------------
+Line       45 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       46 Item    1  (data[0] === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+          Input Term   Covered  Reason for no coverage   Hint
+         -----------  --------  -----------------------  --------------
+  (data[0] === 1'b1)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (data[0] === 1'b1)_0  -                             
+  Row   2:          1  (data[0] === 1'b1)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       48 Item    1  (dbg_mode & halt_req)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+    halt_req         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  dbg_mode_0            halt_req                      
+  Row   2:          1  dbg_mode_1            halt_req                      
+  Row   3:    ***0***  halt_req_0            dbg_mode                      
+  Row   4:          1  halt_req_1            dbg_mode                      
+
+----------------Focused Condition View-------------------
+Line       49 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       52 Item    1  (data === golden_cnt)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (data === golden_cnt)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:    ***0***  (data === golden_cnt)_0  -                             
+  Row   2:          1  (data === golden_cnt)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       54 Item    1  (tim_pready === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (tim_pready === 1'b1)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  (tim_pready === 1'b1)_0  -                             
+  Row   2:    ***0***  (tim_pready === 1'b1)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       55 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       59 Item    1  (dbg_mode & halt_req)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+    halt_req         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  dbg_mode_0            halt_req                      
+  Row   2:          1  dbg_mode_1            halt_req                      
+  Row   3:    ***0***  halt_req_0            dbg_mode                      
+  Row   4:          1  halt_req_1            dbg_mode                      
+
+----------------Focused Condition View-------------------
+Line       60 Item    1  (data === predata)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+          Input Term   Covered  Reason for no coverage   Hint
+         -----------  --------  -----------------------  --------------
+  (data === predata)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (data === predata)_0  -                             
+  Row   2:          1  (data === predata)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       62 Item    1  (data === (golden_cnt >> div_val))
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                          Input Term   Covered  Reason for no coverage   Hint
+                         -----------  --------  -----------------------  --------------
+  (data === (golden_cnt >> div_val))         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                            Non-masking condition(s)      
+ ---------  ---------  --------------------                  -------------------------     
+  Row   1:    ***0***  (data === (golden_cnt >> div_val))_0  -                             
+  Row   2:          1  (data === (golden_cnt >> div_val))_1  -                             
+
+----------------Focused Condition View-------------------
+Line       63 Item    1  (tim_pready === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (tim_pready === 1'b1)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:    ***0***  (tim_pready === 1'b1)_0  -                             
+  Row   2:          1  (tim_pready === 1'b1)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       67 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       70 Item    1  (tim_int !== 1'b0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (cnt1 >= cnt)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (cnt1 >= cnt)_0       -                             
+  Row   2:          2  (cnt1 >= cnt)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       71 Item    1  (data > predata)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (data > predata)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (data > predata)_0    -                             
+  Row   2:          1  (data > predata)_1    -                             
+
+
+----------------Focused Condition View-------------------
+Line       76 Item    1  (tim_pslverr === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+              Input Term   Covered  Reason for no coverage   Hint
+             -----------  --------  -----------------------  --------------
+  (tim_pslverr === 1'b1)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                Non-masking condition(s)      
+ ---------  ---------  --------------------      -------------------------     
+  Row   1:    ***0***  (tim_pslverr === 1'b1)_0  -                             
+  Row   2:          1  (tim_pslverr === 1'b1)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       80 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       81 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          2  (error === 0)_1       -                             
+
+
+----------------Focused Condition View-------------------
+Line       85 Item    1  ((cnt1 === (golden_cnt >> div_val)) && (cnt1 > cnt))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                          Input Term   Covered  Reason for no coverage   Hint
+                         -----------  --------  -----------------------  --------------
+  (cnt1 === (golden_cnt >> div_val))         N  '_0' not hit             Hit '_0'
+                        (cnt1 > cnt)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                            Non-masking condition(s)      
+ ---------  ---------  --------------------                  -------------------------     
+  Row   1:    ***0***  (cnt1 === (golden_cnt >> div_val))_0  -                             
+  Row   2:          1  (cnt1 === (golden_cnt >> div_val))_1  (cnt1 > cnt)                  
+  Row   3:    ***0***  (cnt1 > cnt)_0                        (cnt1 === (golden_cnt >> div_val))
+  Row   4:          1  (cnt1 > cnt)_1                        (cnt1 === (golden_cnt >> div_val))
+
+----------------Focused Condition View-------------------
+Line       87 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (error === 0)_0       -                             
+  Row   2:    ***0***  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       92 Item    1  (data > predata)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (data > predata)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (data > predata)_0    -                             
+  Row   2:          1  (data > predata)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       96 Item    1  (tim_pready === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (tim_pready === 1'b1)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  (tim_pready === 1'b1)_0  -                             
+  Row   2:    ***0***  (tim_pready === 1'b1)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       105 Item    1  (error === 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (error === 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (error === 0)_0       -                             
+  Row   2:          1  (error === 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       110 Item    1  (tim_pready === 1'b1)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (tim_pready === 1'b1)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:    ***0***  (tim_pready === 1'b1)_0  -                             
+  Row   2:          1  (tim_pready === 1'b1)_1  -                             
+
+
+
+Expression Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                     11         6         5    54.54%
+
+================================Expression Details================================
+
+Expression Coverage for instance /test_bench --
+
+  File run_test.v
+----------------Focused Expression View-----------------
+Line       70 Item    1  ((data[0] & pstrb[0]) & (pwdata[1] !== data[1]))
+Expression totals: 1 of 3 input terms covered = 33.33%
+
+               Input Term   Covered  Reason for no coverage   Hint
+              -----------  --------  -----------------------  --------------
+                  data[0]         N  '_0' not hit             Hit '_0'
+  (pwdata[1] !== data[1])         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                 Non-masking condition(s)      
+ ---------  ---------  --------------------       -------------------------     
+  Row   1:    ***0***  data[0]_0                  ((pwdata[1] !== data[1]) && pstrb[0])
+  Row   2:          1  data[0]_1                  ((pwdata[1] !== data[1]) && pstrb[0])
+  Row   3:          1  pstrb[0]_0                 ((pwdata[1] !== data[1]) && data[0])
+  Row   4:          1  pstrb[0]_1                 ((pwdata[1] !== data[1]) && data[0])
+  Row   5:    ***0***  (pwdata[1] !== data[1])_0  (data[0] & pstrb[0])          
+  Row   6:          1  (pwdata[1] !== data[1])_1  (data[0] & pstrb[0])          
+
+----------------Focused Expression View-----------------
+Line       71 Item    1  ((data[0] & pstrb[1]) & (pwdata[11:8] !== data[11:8]))
+Expression totals: 2 of 3 input terms covered = 66.66%
+
+                     Input Term   Covered  Reason for no coverage   Hint
+                    -----------  --------  -----------------------  --------------
+  (pwdata[11:8] !== data[11:8])         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                       Non-masking condition(s)      
+ ---------  ---------  --------------------             -------------------------     
+  Row   1:          1  data[0]_0                        ((pwdata[11:8] !== data[11:8]) && pstrb[1])
+  Row   2:          1  data[0]_1                        ((pwdata[11:8] !== data[11:8]) && pstrb[1])
+  Row   3:          1  pstrb[1]_0                       ((pwdata[11:8] !== data[11:8]) && data[0])
+  Row   4:          1  pstrb[1]_1                       ((pwdata[11:8] !== data[11:8]) && data[0])
+  Row   5:    ***0***  (pwdata[11:8] !== data[11:8])_0  (data[0] & pstrb[1])          
+  Row   6:          1  (pwdata[11:8] !== data[11:8])_1  (data[0] & pstrb[1])          
+
+----------------Focused Expression View-----------------
+Line       72 Item    1  ((pwdata >= 9) & pstrb[1])
+Expression totals: 1 of 2 input terms covered = 50.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (pwdata >= 9)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (pwdata >= 9)_0       pstrb[1]                      
+  Row   2:          1  (pwdata >= 9)_1       pstrb[1]                      
+  Row   3:          1  pstrb[1]_0            (pwdata >= 9)                 
+  Row   4:          1  pstrb[1]_1            (pwdata >= 9)                 
+
+----------------Focused Expression View-----------------
+Line       73 Item    1  ((div_en_error | div_val_error) | prohibit_value)
+Expression totals: 2 of 3 input terms covered = 66.66%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+   div_val_error         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  div_en_error_0        (~prohibit_value && ~div_val_error)
+  Row   2:          1  div_en_error_1        (~prohibit_value && ~div_val_error)
+  Row   3:          1  div_val_error_0       (~prohibit_value && ~div_en_error)
+  Row   4:    ***0***  div_val_error_1       (~prohibit_value && ~div_en_error)
+  Row   5:          1  prohibit_value_0      ~(div_en_error | div_val_error)
+  Row   6:          1  prohibit_value_1      ~(div_en_error | div_val_error)
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     471       436        35    92.56%
+
+================================Statement Details================================
+
+Statement Coverage for instance /test_bench --
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        502       274       228    54.58%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /test_bench --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                           data[0]          13          15      100.00 
+                                           data[1]          11          13      100.00 
+                                           data[2]          10          13      100.00 
+                                           data[3]          10          11      100.00 
+                                           data[4]           9          10      100.00 
+                                         data[5-6]          10          11      100.00 
+                                           data[7]           9          10      100.00 
+                                           data[8]          11          12      100.00 
+                                           data[9]           8          10      100.00 
+                                          data[10]           7           7      100.00 
+                                          data[11]           8           8      100.00 
+                                       data[12-16]           7           7      100.00 
+                                       data[17-31]           6           6      100.00 
+                                        data2[0-7]           0           0        0.00 
+                                       data2[8-15]           0           1       50.00 
+                                      data2[16-31]           0           0        0.00 
+                                          dbg_mode           0           4       50.00 
+                                          error[0]           1           1      100.00 
+                                          error[1]           0           1       50.00 
+                                       error[2-31]           0           0        0.00 
+                                   golden_cnt[0-3]          10          10      100.00 
+                                   golden_cnt[4-5]           9           9      100.00 
+                                     golden_cnt[6]           8           8      100.00 
+                                     golden_cnt[7]           7           7      100.00 
+                                     golden_cnt[8]           6           7      100.00 
+                                     golden_cnt[9]           3           5      100.00 
+                                    golden_cnt[10]           3           3      100.00 
+                                 golden_cnt[11-15]           2           2      100.00 
+                                    golden_cnt[16]           0           2       50.00 
+                                 golden_cnt[17-63]           0           0        0.00 
+                                           sys_clk          16          16      100.00 
+                                         sys_rst_n           0          16       50.00 
+                                           tim_int           3           4      100.00 
+                                    tim_paddr[0-1]           1           1      100.00 
+                                      tim_paddr[2]          15          15      100.00 
+                                      tim_paddr[3]          14          14      100.00 
+                                      tim_paddr[4]          12          12      100.00 
+                                   tim_paddr[5-11]           0           0        0.00 
+                                       tim_penable          16          16      100.00 
+                                   tim_penable_err           1           1      100.00 
+                                     tim_prdata[0]          15          15      100.00 
+                                   tim_prdata[1-2]          13          13      100.00 
+                                     tim_prdata[3]          11          11      100.00 
+                                     tim_prdata[4]          10          10      100.00 
+                                   tim_prdata[5-6]          11          11      100.00 
+                                     tim_prdata[7]          10          10      100.00 
+                                     tim_prdata[8]          13          13      100.00 
+                                     tim_prdata[9]          11          11      100.00 
+                                    tim_prdata[10]           8           8      100.00 
+                                    tim_prdata[11]           9           9      100.00 
+                                 tim_prdata[12-16]           8           8      100.00 
+                                 tim_prdata[17-18]           7           7      100.00 
+                                    tim_prdata[19]           6           6      100.00 
+                                 tim_prdata[20-22]           7           7      100.00 
+                                    tim_prdata[23]           6           6      100.00 
+                                 tim_prdata[24-26]           7           7      100.00 
+                                    tim_prdata[27]           6           6      100.00 
+                                 tim_prdata[28-30]           7           7      100.00 
+                                    tim_prdata[31]           6           6      100.00 
+                                        tim_pready          16          16      100.00 
+                                          tim_psel          16          16      100.00 
+                                      tim_psel_err           1           1      100.00 
+                                       tim_pslverr           2           2      100.00 
+                                      tim_pstrb[0]          15          15      100.00 
+                                      tim_pstrb[1]          13          13      100.00 
+                                      tim_pstrb[2]          12          12      100.00 
+                                      tim_pstrb[3]          13          13      100.00 
+                                     tim_pwdata[0]          15          15      100.00 
+                                     tim_pwdata[1]          11          11      100.00 
+                                   tim_pwdata[2-7]           8           8      100.00 
+                                     tim_pwdata[8]           9           9      100.00 
+                                     tim_pwdata[9]          10          10      100.00 
+                                    tim_pwdata[10]           9           9      100.00 
+                                    tim_pwdata[11]          10          10      100.00 
+                                 tim_pwdata[12-16]           8           8      100.00 
+                                 tim_pwdata[17-18]           6           6      100.00 
+                                    tim_pwdata[19]           5           5      100.00 
+                                 tim_pwdata[20-22]           6           6      100.00 
+                                    tim_pwdata[23]           5           5      100.00 
+                                 tim_pwdata[24-26]           6           6      100.00 
+                                    tim_pwdata[27]           5           5      100.00 
+                                 tim_pwdata[28-30]           6           6      100.00 
+                                    tim_pwdata[31]           5           5      100.00 
+                                        tim_pwrite          15          15      100.00 
+
+Total Node Count     =        251 
+Toggled Node Count   =        131 
+Untoggled Node Count =        120 
+
+Toggle Coverage      =      54.58% (274 of 502 bins)
+
+
+Total Coverage By Instance (filtered view): 59.34%
+

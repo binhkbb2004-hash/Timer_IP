@@ -1,0 +1,69 @@
+# vsim -coverage -l counting_control_mode_0.log -c test_bench -voptargs="+cover=bcesft" -assertdebug -do "coverage save -onexit counting_control_mode_0.ucdb; log -r /*;run -all" 
+# Start time: 23:59:17 on Dec 13,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2024.3 linux_x86_64 Sep 10 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading work.test_bench(fast)
+# coverage save -onexit counting_control_mode_0.ucdb
+#  log -r /*
+# run -all
+# ======================================================
+# TESTCASE: CHECK COUNTER IN DIV MODE 0
+# ======================================================
+# ----------------------------------------------------------
+# TIME: 326, [INFO] Read data at addr: 12'h000, data: 32'h00000100
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTime: 326, PASS data correct | Exp: 00000100, Act: 00000100[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 326, [INFO] Write data at addr: 12'h000, data: 32'h00000003, pstrb: 4'b0001
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1726, [INFO] Read data at addr: 12'h004, data: 32'h0000000b
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTIME: 1726, PASS | Count count up | Count value = b[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1726, [INFO] Write data at addr: 12'h000, data: 32'h00000002, pstrb: 4'b0001
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 1926, [INFO] Write data at addr: 12'h000, data: 32'h00000003, pstrb: 4'b1111
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 14925, [INFO] Write data at addr: 12'h01c, data: 32'h00000001, pstrb: 4'b0001
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 15326, [INFO] Read data at addr: 12'h004, data: 32'h00000104
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTIME: 15326, PASS | Default mode work properly | Count value = 260, Count expect = 260[0m
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 15326, [INFO] Write data at addr: 12'h01c, data: 32'h00000000, pstrb: 4'b0001
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# TIME: 28526, [INFO] Read data at addr: 12'h004, data: 32'h00000207
+# ----------------------------------------------------------
+# ----------------------------------------------------------
+# [32mTIME: 28526, PASS | Timer work properly after halted | Count value = 519, Count previous = 260[0m
+# ----------------------------------------------------------
+# PASS TESTCASE
+# ** Note: $finish    : ../tb/test_bench.v(94)
+#    Time: 28626 ns  Iteration: 0  Instance: /test_bench
+# Saving coverage database on exit...
+# End time: 23:59:18 on Dec 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
