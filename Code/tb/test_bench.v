@@ -23,7 +23,7 @@ module test_bench;
 
 	parameter TCR   = 12'h00;
 	parameter TDR0	= 12'h04;
-       	parameter TDR1	= 12'h08;
+    parameter TDR1	= 12'h08;
 	parameter TCMP0	= 12'h0C;
 	parameter TCMP1	= 12'h10;
 	parameter TIER  = 12'h14;

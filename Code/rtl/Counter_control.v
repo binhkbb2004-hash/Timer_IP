@@ -8,7 +8,7 @@ module Counter_control(
 	output wire		cnt_en
 );
 
-	reg 	[7:0] 	counter_internal;
+	reg [7:0] 	counter_internal;
 	reg	[7:0] 	limit;
 
 	wire		default_mode;
@@ -37,7 +37,7 @@ module Counter_control(
 	assign cnt_clr = (!timer_en) | (!div_en) | ((counter_internal == limit) & (!halt_req));
 
 	assign cnt_2_pre = cnt_set ? (counter_internal + 1) : counter_internal;
-       	assign cnt_pre   = cnt_clr ? 8'h0 : cnt_2_pre;
+    assign cnt_pre   = cnt_clr ? 8'h0 : cnt_2_pre;
 
 	always @(posedge clk or negedge rst_n) begin
 		if(!rst_n) begin

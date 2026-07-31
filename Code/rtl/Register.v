@@ -12,7 +12,7 @@ module Register(
 
 	output reg  		div_en,
 	output reg  [3:0]	div_val,
-       	output wire 		halt_req_out,
+    output wire 		halt_req_out,
 	output reg  		timer_en,
 	output wire 		pslverr,
 	output wire 		set_int,
@@ -141,8 +141,8 @@ module Register(
 	assign TDR1_wr_sel = wr_en & reg_sel[2];
 
 	//4. TCMP0
-	assign tcmp0_pre[7:0] 	= wr_en & reg_sel[3] & pstrb[0]		?	pwdata[7:0]	: 	tcmp0[7:0];
-        assign tcmp0_pre[15:8]	= wr_en & reg_sel[3] & pstrb[1]		? 	pwdata[15:8]	: 	tcmp0[15:8];	
+	assign tcmp0_pre[7:0] 	= wr_en & reg_sel[3] & pstrb[0]		?	pwdata[7:0]		: 	tcmp0[7:0];
+    assign tcmp0_pre[15:8]	= wr_en & reg_sel[3] & pstrb[1]		? 	pwdata[15:8]	: 	tcmp0[15:8];	
 	assign tcmp0_pre[23:16]	= wr_en & reg_sel[3] & pstrb[2]		? 	pwdata[23:16]	: 	tcmp0[23:16];
 	assign tcmp0_pre[31:24] = wr_en	& reg_sel[3] & pstrb[3]		? 	pwdata[31:24]	: 	tcmp0[31:24];
 
@@ -155,7 +155,7 @@ module Register(
 	end
 	
 	//5. TCMP1	
-	assign tcmp1_pre[7:0] 	= wr_en & reg_sel[4] & pstrb[0]		?	pwdata[7:0]	: 	tcmp1[7:0];	
+	assign tcmp1_pre[7:0] 	= wr_en & reg_sel[4] & pstrb[0]		?	pwdata[7:0]		: 	tcmp1[7:0];	
 	assign tcmp1_pre[15:8]	= wr_en & reg_sel[4] & pstrb[1]		? 	pwdata[15:8]	: 	tcmp1[15:8];  
 	assign tcmp1_pre[23:16]	= wr_en & reg_sel[4] & pstrb[2]		? 	pwdata[23:16]	: 	tcmp1[23:16];
 	assign tcmp1_pre[31:24] = wr_en	& reg_sel[4] & pstrb[3]		? 	pwdata[31:24]	: 	tcmp1[31:24];
@@ -202,7 +202,7 @@ module Register(
 	assign halt_ack = halt_req & dbg_mode;
 	assign halt_req_out = halt_ack;
 
-	//combination logic for read
+	//logic for read
 	
 	always @(*) begin
 		if(rd_en) begin
