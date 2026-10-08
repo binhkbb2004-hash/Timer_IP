@@ -42,7 +42,7 @@ module Register(
 	reg  		timer_en_delay;
 	wire 		div_en_sel;
 	wire 		div_en_pre;
-       	wire 		div_en_error;
+    wire 		div_en_error;
 	wire 		div_val_sel;
 	wire 		div_val_error;
 	wire 		prohibit_val;
